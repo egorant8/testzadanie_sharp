@@ -32,7 +32,7 @@ namespace TestZadanie
                 JsonElement root = doc.RootElement;
                 token = root.GetProperty("token").GetString();
                 label1.Text = "Авторизация: успешно.";
-
+                Console.WriteLine(auth_resp);
                 comboBox1.Items.Clear();
                 resp = wb.DownloadString("http://178.57.218.210:198/commands/types?token=" + token);
                 JsonDocument doc1 = JsonDocument.Parse(resp);
@@ -71,7 +71,7 @@ namespace TestZadanie
                 {
                     if (comboBox1.Text == item.GetProperty("name").GetString())
                     {
-                        MessageBox.Show(item.GetProperty("parameter_name1").ToString());
+                        //MessageBox.Show(item.GetProperty("parameter_name1").ToString());
                         if (item.GetProperty("parameter_name1").ToString() != "")
                         {
                             parameter_default_value1.Text = Convert.ToString(item.GetProperty("parameter_default_value1"));
@@ -93,6 +93,7 @@ namespace TestZadanie
                             parameter_default_value3.Visible = true;
                             label3.Visible = true;
                         }
+                        richTextBox1.Text = "ID терминала: " + Convert.ToString(item.GetProperty("id"));
                         break;
                     }
                 }
